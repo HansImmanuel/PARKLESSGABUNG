@@ -43,7 +43,8 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        return redirect()->route('parklessLogin')
-            ->with('success', 'Registration successful! Please log in.');
+        Auth::login($user);
+
+        return redirect(route('dashboard', absolute: false));
     }
 }
