@@ -15,12 +15,6 @@
             <div class="title signup">Sign Up Form</div>
         </div>
         <div class="form-container">
-            <!-- Error Message -->
-            @if ($errors->any())
-                <div style="color: red; margin-bottom: 1rem; text-align: center;">
-                    {{ $errors->first() }}
-                </div>
-            @endif
             <div class="slide-controls">
                 <input type="radio" name="slide" id="login" checked>
                 <input type="radio" name="slide" id="signup">
@@ -30,7 +24,7 @@
             </div>
             <div class="form-inner">
                 <!-- Login Form -->
-                <form action="{{ url('/parkless-login') }}" method="POST" class="login" style="display: block;">
+                <form action="{{ route('login') }}" method="POST" class="login">
                     @csrf
                     <div class="field">
                         <input type="email" name="email" placeholder="Email Address" required id="email">
@@ -47,7 +41,7 @@
                 </form>
 
                 <!-- Signup Form -->
-                <form action="{{ route('register') }}" method="POST" class="signup" style="display: none;">
+                <form action="{{ route('register') }}" method="POST" class="signup">
                     @csrf
                     <div class="field">
                         <input type="email" name="email" placeholder="Email Address" required>
@@ -69,29 +63,7 @@
             </div>
         </div>
     </div>
-    <script>
-        const loginRadio = document.getElementById('login');
-        const signupRadio = document.getElementById('signup');
-        const loginForm = document.querySelector('form.login');
-        const signupForm = document.querySelector('form.signup');
-
-        function toggleForms() {
-            if (signupRadio.checked) {
-                loginForm.style.display = 'none';
-                signupForm.style.display = 'block';
-            } else {
-                loginForm.style.display = 'block';
-                signupForm.style.display = 'none';
-            }
-        }
-
-        // Inisialisasi
-        toggleForms();
-
-        // Event listener
-        loginRadio.addEventListener('change', toggleForms);
-        signupRadio.addEventListener('change', toggleForms);
-    </script>
+    <script src="{{ asset('scriptlogin.js') }}"></script>
 </body>
 
 </html>
